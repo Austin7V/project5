@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import ArtPiecePreview from "@/components/ArtPiecePreview";
+
 export default function GalleryPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [artPieces, setArtPieces] = useState([]);
@@ -37,16 +39,9 @@ export default function GalleryPage() {
         <>
           <p>Art Pieces St.: {artPieces.length}</p>
           <div>
-            {artPieces.slice().map((piece) => (
-              <div key={piece.slug}>
-                <img
-                  src={piece.imageSource}
-                  alt={piece.name}
-                  width="400"
-                  style={{ display: "block", marginBottom: 8 }}
-                />
-                <h2 style={{ margin: 0, fontSize: 18 }}>{piece.name}</h2>
-                <p style={{ margin: 0 }}>{piece.artist}</p>
+            {artPieces.map((piece) => (
+              <div key={piece.slug} style={{ marginBottom: 24 }}>
+                <ArtPiecePreview piece={piece} />
               </div>
             ))}
           </div>
