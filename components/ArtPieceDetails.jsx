@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function ArtPieceDetails({ piece }) {
+    const router = useRouter()
   return (
     <div>
       <h1>{piece.name}</h1>
@@ -14,7 +16,7 @@ export default function ArtPieceDetails({ piece }) {
       <p>Artist: {piece.artist}</p>
       <p>Year: {piece.year}</p>
       <p>Genre: {piece.genre}</p>
-      <button onClick={() => Router.push("/gallery")}>Back</button>
+      <button onClick={() => router.push("/gallery")}>Back</button>
     </div>
   );
 }

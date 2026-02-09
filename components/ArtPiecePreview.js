@@ -1,4 +1,13 @@
 import styled from "styled-components";
+import Link from "next/link";
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    opacity: 0.8;
+  }
+`;
 
 const Card = styled.article`
   border: 2px solid #444;
@@ -39,12 +48,14 @@ const Artist = styled.p`
 
 export default function ArtPiecePreview({ piece }) {
   return (
-    <Card>
-      <ImageWrapper>
-        <Image src={piece.imageSource} alt={piece.name} />
-      </ImageWrapper>
-      <Title>{piece.name}</Title>
-      <Artist>{piece.artist}</Artist>
-    </Card>
+    <StyledLink href={`/art-pieces/${piece.slug}`}>
+      <Card>
+        <ImageWrapper>
+          <Image src={piece.imageSource} alt={piece.name} />
+        </ImageWrapper>
+        <Title>{piece.name}</Title>
+        <Artist>{piece.artist}</Artist>
+      </Card>
+    </StyledLink>
   );
 }
