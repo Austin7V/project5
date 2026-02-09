@@ -5,8 +5,8 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <Navigation />
       <Component {...pageProps} />
+      <Navigation />
     </>
   );
 }

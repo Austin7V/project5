@@ -17,11 +17,16 @@ export default function Navigation() {
 }
 
 const StyledNav = styled.nav`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   background-color: #f0f0f0;
   padding: 1rem 2rem;
   display: flex;
   gap: 1.5rem;
   justify-content: center;
+  z-index: 100;
 `;
 
 const StyledLink = styled(Link)`
