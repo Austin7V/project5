@@ -1,14 +1,50 @@
+import styled from "styled-components";
+
+const Card = styled.article`
+  border: 2px solid #444;
+  padding: 16px;
+  background-color: #111;
+  height: 100%;
+`;
+
+const ImageWrapper = styled.div`
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #0b0b0b;
+  border: 1px solid #333;
+`;
+
+const Image = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+`;
+
+const Title = styled.h2`
+  margin-bottom: 4px;
+  font-size: 18px;
+`;
+
+const Artist = styled.p`
+  margin: 0;
+`;
+
 export default function ArtPiecePreview({ piece }) {
   return (
-    <div>
-      <img
-        src={piece.imageSource}
-        alt={piece.name}
-        width="400"
-        style={{ display: "block", marginBottom: 8 }}
-      />
-      <h2 style={{ margin: 0, fontSize: 18 }}>{piece.name}</h2>
-      <p style={{ margin: 0 }}>{piece.artist}</p>
-    </div>
+    <Card>
+      <ImageWrapper>
+        <Image src={piece.imageSource} alt={piece.name} />
+      </ImageWrapper>
+      <Title>{piece.name}</Title>
+      <Artist>{piece.artist}</Artist>
+    </Card>
   );
 }

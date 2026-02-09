@@ -1,13 +1,25 @@
 import ArtPiecePreview from "./ArtPiecePreview";
+import styled from "styled-components";
+
+const Grid = styled.div`
+  display: grid;
+  gap: 24px;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+`;
 
 export default function ArtPiecesList({ pieces }) {
   return (
-    <div>
+    <Grid>
       {pieces.map((piece) => (
-        <div key={piece.slug} style={{ marginBottom: 24 }}>
-          <ArtPiecePreview piece={piece} />
-        </div>
+        <ArtPiecePreview key={piece.slug} piece={piece} />
       ))}
-    </div>
+    </Grid>
   );
 }
