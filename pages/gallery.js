@@ -1,46 +1,49 @@
-import { useEffect, useState } from "react";
-import ArtPiecesList from "@/components/ArtPiecesList";
+import useSWR from "swr";
+import styled from "styled-components";
+import ArtPiecesList from "../components/ArtPiecesList";
+
+const fetcher = (...args) => fetch(...args).then((response) => response.json());
+
+const Page = styled.main`
+  background-color: #000;
+  min-height: 100vh;
+  color: #fff;
+  padding: 18px;
+`;
+
+const Title = styled.h1`
+  margin-bottom: 12px;
+`;
+
+const Status = styled.p`
+  margin-bottom: 16px;
+`;
 
 export default function GalleryPage() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [artPieces, setArtPieces] = useState([]);
-
   const urlArt = "https://example-apis.vercel.app/api/art";
 
-  useEffect(() => {
-    async function fetchArt() {
-      console.log("fetch art!");
+  const {
+    data: artPieces,
+    error,
+    isLoading,
+    isValidating,
+  } = useSWR(urlArt, fetcher);
 
-      const gallery = await fetch(urlArt);
-      const galleryData = await gallery.json();
-
-      console.log(galleryData);
-      console.log(galleryData[0]);
-      setArtPieces(galleryData);
-
-      setIsLoading(false);
-    }
-    fetchArt();
-  }, []);
+  if (error) return <Page>404 Not Found</Page>;
+  if (isLoading) return <Page>Loading...</Page>;
 
   return (
-    <main
-      style={{
-        background: "#000",
-        minHeight: "100vh",
-        color: "#fff",
-        padding: 18,
-      }}
-    >
-      <h1>Gallery</h1>
-      {isLoading ? (
-        <p> Loading...</p>
-      ) : (
-        <>
-          <p>Art Pieces St.: {artPieces.length}</p>
-          <ArtPiecesList pieces={artPieces} />
-        </>
-      )}
-    </main>
+    <Page>
+      <Title>Gallery</Title>
+
+      <Status>
+        <span
+          role="img"
+          aria-label={isValidating ? "Validating" : "Ready"}
+        ></span>
+      </Status>
+
+      <ArtPiecesList pieces={artPieces} />
+    </Page>
   );
 }
