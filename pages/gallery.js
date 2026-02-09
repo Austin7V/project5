@@ -35,14 +35,6 @@ export default function GalleryPage() {
   return (
     <Page>
       <Title>Gallery</Title>
-
-      <Status>
-        <span
-          role="img"
-          aria-label={isValidating ? "Validating" : "Ready"}
-        ></span>
-      </Status>
-
       <ArtPiecesList pieces={artPieces} />
     </Page>
   );
