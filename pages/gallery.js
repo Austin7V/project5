@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ArtPiecePreview from "@/components/ArtPiecePreview";
+import ArtPiecesList from "@/components/ArtPiecesList";
 
 export default function GalleryPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,13 +38,7 @@ export default function GalleryPage() {
       ) : (
         <>
           <p>Art Pieces St.: {artPieces.length}</p>
-          <div>
-            {artPieces.map((piece) => (
-              <div key={piece.slug} style={{ marginBottom: 24 }}>
-                <ArtPiecePreview piece={piece} />
-              </div>
-            ))}
-          </div>
+          <ArtPiecesList pieces={artPieces} />
         </>
       )}
     </main>
