@@ -1,10 +1,20 @@
 import GlobalStyle from "../styles";
+import { SWRConfig } from "swr";
+import Navigation from "@/components/Navigation";
+
+async function fetcher(url) {
+  const response = await fetch(url);
+  return await response.json();
+}
 
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <GlobalStyle />
-      <Component {...pageProps} />
+      <SWRConfig value={{ fetcher }}>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </SWRConfig>
+      <Navigation />
     </>
   );
 }
