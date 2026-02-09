@@ -1,7 +1,7 @@
 import ArtPiecePreview from "./ArtPiecePreview";
 import styled from "styled-components";
 
-const Grid = styled.div`
+const List = styled.ul`
   display: grid;
   gap: 24px;
 
@@ -13,13 +13,18 @@ const Grid = styled.div`
     grid-template-columns: repeat(3, 1fr);
   }
 `;
+const ListItem = styled.li`
+  list-style-type: none;
+`;
 
 export default function ArtPiecesList({ pieces }) {
   return (
-    <Grid>
+    <List>
       {pieces.map((piece) => (
-        <ArtPiecePreview key={piece.slug} piece={piece} />
+        <ListItem key={piece.slug}>
+          <ArtPiecePreview piece={piece} />
+        </ListItem>
       ))}
-    </Grid>
+    </List>
   );
 }
