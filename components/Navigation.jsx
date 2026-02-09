@@ -15,6 +15,7 @@ const StyledNav = styled.nav`
   padding: 1rem 2rem;
   display: flex;
   gap: 1.5rem;
+  justify-content: center;
 `;
 
 const StyledLink = styled(Link)`
