@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import FavouritesButton from "./FavouritesButton/FavouritesButton";
 
 const Card = styled.article`
   border: 2px solid #444;
@@ -37,7 +38,7 @@ const Artist = styled.p`
   margin: 0;
 `;
 
-export default function ArtPieceDetails({ piece }) {
+export default function ArtPieceDetails({ piece, isLiked, onToggle }) {
   const router = useRouter();
   return (
     <Card>
@@ -54,6 +55,7 @@ export default function ArtPieceDetails({ piece }) {
       <p>Year: {piece.year}</p>
       <p>Genre: {piece.genre}</p>
       <button onClick={() => router.push("/gallery")}>← Back to Gallery</button>
+      <FavouritesButton id={piece.slug} isLiked={isLiked} onToggle={onToggle} />
     </Card>
   );
 }

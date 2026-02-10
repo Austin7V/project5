@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import FavouritesButton from "./FavouritesButton/FavouritesButton";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -12,7 +13,8 @@ const StyledLink = styled(Link)`
 const Card = styled.article`
   border: 2px solid #444;
   padding: 16px;
-  background-color: #111;
+  background-color: ${({ $isLiked }) => ($isLiked ? "#fff" : "#111")};
+  color: ${({ $isLiked }) => ($isLiked ? "#111" : "#fff")};
   height: 100%;
 `;
 
@@ -46,16 +48,19 @@ const Artist = styled.p`
   margin: 0;
 `;
 
-export default function ArtPiecePreview({ piece }) {
+export default function ArtPiecePreview({ piece, isLiked, onToggle }) {
   return (
-    <StyledLink href={`/art-pieces/${piece.slug}`}>
-      <Card>
-        <ImageWrapper>
-          <Image src={piece.imageSource} alt={piece.name} />
-        </ImageWrapper>
-        <Title>{piece.name}</Title>
-        <Artist>{piece.artist}</Artist>
-      </Card>
-    </StyledLink>
+    <>
+      <StyledLink href={`/art-pieces/${piece.slug}`}>
+        <Card $isLiked={isLiked.includes(piece.slug)}>
+          <ImageWrapper>
+            <Image src={piece.imageSource} alt={piece.name} />
+          </ImageWrapper>
+          <Title>{piece.name}</Title>
+          <Artist>{piece.artist}</Artist>
+        </Card>
+      </StyledLink>
+      <FavouritesButton id={piece.slug} isLiked={isLiked} onToggle={onToggle} />
+    </>
   );
 }
