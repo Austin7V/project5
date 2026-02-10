@@ -2,6 +2,7 @@ import GlobalStyle from "../styles";
 import { SWRConfig } from "swr";
 import Navigation from "@/components/Navigation";
 import useSWR from "swr";
+import useLocalStorageState from "use-local-storage-state";
 
 async function fetcher(url) {
   const response = await fetch(url);
@@ -9,6 +10,18 @@ async function fetcher(url) {
 }
 
 export default function App({ Component, pageProps }) {
+  const [isLiked, setIsLiked] = useLocalStorageState("isLiked", {
+    defaultValue: [],
+  });
+
+  function toggleLiked(id) {
+    setIsLiked(
+      isLiked.includes(id)
+        ? isLiked.filter((ids) => ids !== id)
+        : [...isLiked, id]
+    );
+  }
+
   const URL = "https://example-apis.vercel.app/api/art";
 
   const { data, error, isLoading } = useSWR(URL, fetcher);
@@ -20,7 +33,12 @@ export default function App({ Component, pageProps }) {
     <>
       <SWRConfig value={{ fetcher }}>
         <GlobalStyle />
-        <Component {...pageProps} pieces={data} />
+        <Component
+          {...pageProps}
+          pieces={data}
+          isLiked={isLiked}
+          onToggle={toggleLiked}
+        />
       </SWRConfig>
       <Navigation />
     </>
