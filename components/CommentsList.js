@@ -1,0 +1,12 @@
+export default function CommentsList({ comments }) {
+  return (
+    <ul>
+      {comments.map((comment, index) => (
+        <li key={index}>
+          <p>{comment.text}</p>
+          <small>{comment.date}</small>
+        </li>
+      ))}
+    </ul>
+  );
+}
