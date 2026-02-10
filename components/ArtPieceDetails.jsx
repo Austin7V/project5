@@ -22,8 +22,8 @@ const ImageWrapper = styled.div`
   align-items: center;
 `;
 const StyledImage = styled(Image)`
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: auto;
   object-fit: contain;
   display: block;
 `;
