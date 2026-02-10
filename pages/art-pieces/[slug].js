@@ -2,12 +2,14 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import ArtPieceDetails from "@/components/ArtPieceDetails";
 
-export default function ArtPieceDetailsPage({ pieces }) {
+export default function ArtPieceDetailsPage({ pieces, isLiked, onToggle }) {
   const router = useRouter();
   const { slug } = router.query;
 
   const piece = pieces.find((piece) => piece.slug === slug);
   if (!piece) return <p>Art not found</p>;
 
-  return <ArtPieceDetails piece={piece} />;
+  return (
+    <ArtPieceDetails piece={piece} isLiked={isLiked} onToggle={onToggle} />
+  );
 }
