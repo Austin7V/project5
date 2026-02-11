@@ -14,9 +14,9 @@ export default function App({ Component, pageProps }) {
   const URL = "https://example-apis.vercel.app/api/art";
   const { data, error, isLoading } = useSWR(URL, fetcher);
 
-  const [artPieceData, setArtPieceData] = useState([
-    { slug: "orange-red-and-green", isLiked: true },
-  ]);
+  const [artPieceData, setArtPieceData] = useLocalStorageState("count", {
+    defaultValue: [{ slug: "orange-red-and-green", isLiked: true }],
+  });
 
   function handleLiked(slug) {
     if (artPieceData.some((artPiece) => artPiece.slug === slug)) {
