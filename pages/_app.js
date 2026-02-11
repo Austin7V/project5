@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }) {
   const { data, error, isLoading } = useSWR(URL, fetcher);
 
   const [artPieceData, setArtPieceData] = useLocalStorageState("artPieceData", {
-    defaultValue: [{ slug: "orange-red-and-green", isLiked: true }],
+    defaultValue: [{ slug: "orange-red-and-green", isLiked: false }],
   });
 
   const [comments, setComments] = useLocalStorageState("comments", {
@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }) {
           if (artPiece.slug === slug) {
             return { slug: artPiece.slug, isLiked: !artPiece.isLiked };
           } else {
-            return { slug: artPiece.slug, isLiked: artPiece.isLiked };
+            return artPiece;
           }
         })
       );
