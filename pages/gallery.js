@@ -13,7 +13,6 @@ const Title = styled.h1`
 `;
 
 export default function GalleryPage({ pieces, artPieceData, onToggle }) {
-  console.log(pieces);
   return (
     <Page>
       <Title>Gallery</Title>
