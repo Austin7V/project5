@@ -1,13 +1,18 @@
-export default function FavouritesButton({ id, isLiked, onToggle }) {
+export default function FavouritesButton({ slug, artPieceData, onToggle }) {
+  // console.log(artPieceData.filter((artPiece) => artPiece.slug === slug.slug));
+
+  const isLiked = artPieceData?.find(
+    (artPiece) => artPiece.slug === slug
+  ).isLiked;
+  console.log(isLiked);
   return (
     <button
       type="button"
       onClick={() => {
-        onToggle(id);
-        console.log(isLiked);
+        onToggle(slug);
       }}
     >
-      {isLiked.includes(id) ? "LIKED" : "NOT LIKED"}
+      {isLiked ? "LIKED" : "NOT LIKED"}
     </button>
   );
 }
