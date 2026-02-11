@@ -4,7 +4,11 @@ import ArtPieceDetails from "@/components/ArtPieceDetails";
 import CommentsList from "../../components/CommentsList";
 import CommentForm from "../../components/CommentForm";
 
-export default function ArtPieceDetailsPage({ pieces, isLiked, onToggle }) {
+export default function ArtPieceDetailsPage({
+  pieces,
+  artPieceData,
+  onToggle,
+}) {
   const [comments, setComments] = useState([]);
   const [commentsText, setCommentsText] = useState("");
 
@@ -30,7 +34,11 @@ export default function ArtPieceDetailsPage({ pieces, isLiked, onToggle }) {
 
   return (
     <>
-      <ArtPieceDetails piece={piece} isLiked={isLiked} onToggle={onToggle} />
+      <ArtPieceDetails
+        piece={piece}
+        artPieceData={artPieceData}
+        onToggle={onToggle}
+      />
       <section>
         <h2>Comments</h2>
         <CommentForm

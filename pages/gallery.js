@@ -12,11 +12,15 @@ const Title = styled.h1`
   margin-bottom: 12px;
 `;
 
-export default function GalleryPage({ pieces, isLiked, onToggle }) {
+export default function GalleryPage({ pieces, artPieceData, onToggle }) {
   return (
     <Page>
       <Title>Gallery</Title>
-      <ArtPiecesList pieces={pieces} isLiked={isLiked} onToggle={onToggle} />
+      <ArtPiecesList
+        pieces={pieces}
+        artPieceData={artPieceData}
+        onToggle={onToggle}
+      />
     </Page>
   );
 }

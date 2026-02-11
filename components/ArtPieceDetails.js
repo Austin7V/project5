@@ -39,7 +39,7 @@ const Artist = styled.p`
   margin: 0;
 `;
 
-export default function ArtPieceDetails({ piece, isLiked, onToggle }) {
+export default function ArtPieceDetails({ piece, artPieceData, onToggle }) {
   const router = useRouter();
   return (
     <Card>
@@ -59,7 +59,11 @@ export default function ArtPieceDetails({ piece, isLiked, onToggle }) {
         <ColorPalette colors={piece.colors} />
       )}
       <button onClick={() => router.push("/gallery")}>← Back to Gallery</button>
-      <FavouritesButton id={piece.slug} isLiked={isLiked} onToggle={onToggle} />
+      <FavouritesButton
+        slug={piece.slug}
+        artPieceData={artPieceData}
+        onToggle={onToggle}
+      />
     </Card>
   );
 }

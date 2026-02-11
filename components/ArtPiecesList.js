@@ -9,14 +9,14 @@ const ListItem = styled.li`
   list-style-type: none;
 `;
 
-export default function ArtPiecesList({ pieces, isLiked, onToggle }) {
+export default function ArtPiecesList({ pieces, artPieceData, onToggle }) {
   return (
     <List>
       {pieces.map((piece) => (
         <ListItem key={piece.slug}>
           <ArtPiecePreview
             piece={piece}
-            isLiked={isLiked}
+            artPieceData={artPieceData}
             onToggle={onToggle}
           />
         </ListItem>
