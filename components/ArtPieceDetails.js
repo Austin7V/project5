@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import FavouritesButton from "./FavouritesButton/FavouritesButton";
+import ColorPalette from "./ColorPalette";
 
 const Card = styled.article`
   border: 2px solid #444;
@@ -54,6 +55,9 @@ export default function ArtPieceDetails({ piece, isLiked, onToggle }) {
       <Artist>Artist: {piece.artist}</Artist>
       <p>Year: {piece.year}</p>
       <p>Genre: {piece.genre}</p>
+      {piece.colors && piece.colors.length > 0 && (
+        <ColorPalette colors={piece.colors} />
+      )}
       <button onClick={() => router.push("/gallery")}>← Back to Gallery</button>
       <FavouritesButton id={piece.slug} isLiked={isLiked} onToggle={onToggle} />
     </Card>
