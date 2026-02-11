@@ -8,7 +8,6 @@ export default function ArtPieceDetailsPage({
   pieces,
   artPieceData,
   onToggle,
-  comments,
   onAddComment,
   getCommentsBySlug,
 }) {
