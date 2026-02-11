@@ -8,8 +8,9 @@ export default function ArtPieceDetailsPage({
   pieces,
   artPieceData,
   onToggle,
+  onAddComment,
+  getCommentsBySlug,
 }) {
-  const [comments, setComments] = useState([]);
   const [commentsText, setCommentsText] = useState("");
 
   const router = useRouter();
@@ -20,17 +21,10 @@ export default function ArtPieceDetailsPage({
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (commentsText.trim() === "") return;
-
-    const newComment = {
-      text: commentsText.trim(),
-      date: new Date().toLocaleString(),
-      slug: slug,
-    };
-    setComments((prevComments) => [...prevComments, newComment]);
+    onAddComment(slug, commentsText);
     setCommentsText("");
   }
-  const pieceComments = comments.filter((comment) => comment.slug === slug);
+  const pieceComments = getCommentsBySlug(slug);
 
   return (
     <>
