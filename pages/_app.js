@@ -10,21 +10,20 @@ async function fetcher(url) {
 }
 
 export default function App({ Component, pageProps }) {
-  const [isLiked, setIsLiked] = useLocalStorageState("isLiked", {
+  const URL = "https://example-apis.vercel.app/api/art";
+  const { data, error, isLoading } = useSWR(URL, fetcher);
+
+  const [artPieceData, setArtPieceData] = useLocalStorageState("artPieceData", {
     defaultValue: [],
   });
 
-  function toggleLiked(id) {
-    setIsLiked(
-      isLiked.includes(id)
-        ? isLiked.filter((ids) => ids !== id)
-        : [...isLiked, id]
+  function handleLiked(slug) {
+    setArtPieceData(
+      artPieceData.includes(slug)
+        ? artPieceData.map((slugs) => slugs !== slug)
+        : [...artPieceData, { slug, isLiked: false }]
     );
   }
-
-  const URL = "https://example-apis.vercel.app/api/art";
-
-  const { data, error, isLoading } = useSWR(URL, fetcher);
 
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
@@ -36,8 +35,8 @@ export default function App({ Component, pageProps }) {
         <Component
           {...pageProps}
           pieces={data}
-          isLiked={isLiked}
-          onToggle={toggleLiked}
+          isLiked={artPieceData}
+          onToggle={handleLiked}
         />
       </SWRConfig>
       <Navigation />
