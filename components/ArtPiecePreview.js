@@ -52,7 +52,12 @@ export default function ArtPiecePreview({ piece, artPieceData, onToggle }) {
   return (
     <>
       <StyledLink href={`/art-pieces/${piece.slug}`}>
-        <Card $artPieceData={artPieceData.includes(piece.slug)}>
+        <Card
+          $artPieceData={
+            artPieceData.find((artPiece) => artPiece.slug === piece.slug)
+              ?.isLiked
+          }
+        >
           <ImageWrapper>
             <Image src={piece.imageSource} alt={piece.name} />
           </ImageWrapper>
