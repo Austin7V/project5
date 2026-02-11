@@ -3,7 +3,7 @@ import styled from "styled-components";
 import FavouritesButton from "../FavouritesButton/FavouritesButton";
 import { useEffect, useState } from "react";
 
-export default function Spotlight({ pieces, isLiked, onToggle }) {
+export default function Spotlight({ pieces, artPieceData, onToggle }) {
   const [spotlightPiece, setSpotlight] = useState(pieces[0]);
 
   useEffect(() => {
@@ -21,8 +21,8 @@ export default function Spotlight({ pieces, isLiked, onToggle }) {
       </StyledContainer>
       <p>{spotlightPiece.artist}</p>
       <FavouritesButton
-        id={spotlightPiece.slug}
-        isLiked={isLiked}
+        slug={spotlightPiece.slug}
+        artPieceData={artPieceData}
         onToggle={onToggle}
       />
     </>
