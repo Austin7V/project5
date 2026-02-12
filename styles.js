@@ -16,11 +16,11 @@ export default createGlobalStyle`
   }
 
 h1, h2, h3 {
-color: #f0f0f0;
+color: inherit;
 margin: 0 0 12px 0;
 }
 p {
-color: #f0f0f0;
+color: inherit;
 margin: 8px 0;
 }
 button {
