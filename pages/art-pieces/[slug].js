@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import ArtPieceDetails from "@/components/ArtPieceDetails";
 import CommentsList from "../../components/CommentsList";
 import CommentForm from "../../components/CommentForm";
+import styled from "styled-components";
 
 export default function ArtPieceDetailsPage({
   pieces,
@@ -27,7 +28,8 @@ export default function ArtPieceDetailsPage({
   const pieceComments = getCommentsBySlug(slug);
 
   return (
-    <>
+    <Page>
+      <Title>Details</Title>
       <ArtPieceDetails
         piece={piece}
         artPieceData={artPieceData}
@@ -44,6 +46,15 @@ export default function ArtPieceDetailsPage({
 
         <CommentsList comments={pieceComments} />
       </section>
-    </>
+    </Page>
   );
 }
+const Title = styled.h1`
+  margin-bottom: 12px;
+`;
+const Page = styled.main`
+  background-color: #000;
+  min-height: 100vh;
+  color: #fff;
+  padding: 18px;
+`;

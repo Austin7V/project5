@@ -2,6 +2,17 @@ import styled from "styled-components";
 import Link from "next/link";
 import FavouritesButton from "./FavouritesButton/FavouritesButton";
 
+const Container = styled.div`
+  position: relative;
+`;
+
+const ButtonWrapper = styled.div`
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  z-index: 10;
+`;
+
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
@@ -44,13 +55,9 @@ const Title = styled.h2`
   font-size: 18px;
 `;
 
-const Artist = styled.p`
-  margin: 0;
-`;
-
 export default function ArtPiecePreview({ piece, artPieceData, onToggle }) {
   return (
-    <>
+    <Container>
       <StyledLink href={`/art-pieces/${piece.slug}`}>
         <Card
           $artPieceData={
@@ -62,14 +69,16 @@ export default function ArtPiecePreview({ piece, artPieceData, onToggle }) {
             <Image src={piece.imageSource} alt={piece.name} />
           </ImageWrapper>
           <Title>{piece.name}</Title>
-          <Artist>{piece.artist}</Artist>
+          <p>{piece.artist}</p>
         </Card>
       </StyledLink>
-      <FavouritesButton
-        slug={piece.slug}
-        artPieceData={artPieceData}
-        onToggle={onToggle}
-      />
-    </>
+      <ButtonWrapper>
+        <FavouritesButton
+          slug={piece.slug}
+          artPieceData={artPieceData}
+          onToggle={onToggle}
+        />
+      </ButtonWrapper>
+    </Container>
   );
 }
